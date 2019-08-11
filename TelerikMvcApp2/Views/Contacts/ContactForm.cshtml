@@ -1,0 +1,43 @@
+﻿@model TelerikMvcApp2.Models.Contact
+@{
+    ViewBag.Title = "ContactForm";
+}
+
+<h2>ContactForm</h2>
+
+@using (Html.BeginForm("Save", "Contacts"))
+{
+    <div class="form-group">
+        @Html.LabelFor(m => m.FirstName)
+        @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m=>m.FirstName, "", new { @style = "color:red" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.LastName)
+        @Html.TextBoxFor(m => m.LastName, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m=>m.LastName, "",new { @style = "color:red" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Email)
+        @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m=>m.Email, "", new { @style = "color:red" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Phone)
+        @Html.TextBoxFor(m => m.Phone, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m=>m.Phone, "", new { @style = "color:red" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Address)
+        @Html.TextBoxFor(m => m.Address, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m=>m.Address, "", new { @style = "color:red" })
+    </div>
+   
+    @Html.HiddenFor(m=>m.Id)
+
+    <button type="submit" class="btn btn-primary">Save</button>
+}

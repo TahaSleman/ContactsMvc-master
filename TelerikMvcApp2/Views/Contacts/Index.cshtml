@@ -1,0 +1,57 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+<h2>Contacts</h2>
+<hr />
+
+@Html.ActionLink("New Contact", "Add", "Contacts", null, new { @class = "btn btn-primary" })
+
+<hr />
+
+@(Html.Kendo().Grid<TelerikMvcApp2.Models.Contact>()
+      .Name("grid")
+      .Columns(columns =>
+      {
+
+        
+          columns.Bound(c => c.FirstName);
+          columns.Bound(c => c.LastName);
+          columns.Bound(c => c.Email);
+          columns.Bound(c => c.Phone);
+          columns.Bound(c => c.Address).Width(150);
+
+
+          columns.Template(x => { }).ClientTemplate(@Html.ActionLink("Edit Contact", "Edit", "Contacts", new { id = "Id" }, new { @class = "btn btn-primary" }).ToHtmlString().Replace("Id", "#=id#")).Width(150);
+          columns.Command(command =>
+          {
+              command.Destroy().HtmlAttributes(new { @class = "btn btn-primary" });
+
+          }).Width(120);
+          {
+          }
+      })
+     
+      .Editable(editable => editable.ConfirmDelete("test").DisplayDeleteConfirmation("Are You Sure  ?"))
+      .Pageable()
+      .HtmlAttributes(new { style = "height: 550px;" })
+      .Scrollable()
+      .Groupable()
+      .Sortable()
+
+      .Pageable(pageable => pageable
+          .Refresh(true)
+          .PageSizes(true)
+          .ButtonCount(5))
+      .DataSource(dataSource => dataSource
+          .Ajax()
+          .Read(read => read.Action("GetContacts", "Contacts"))
+          .Model(model => model.Id(p => p.Id))
+          .Destroy(update => update.Action("Delete", "Contacts"))
+          .PageSize(10)
+
+
+      )
+)
+
+
