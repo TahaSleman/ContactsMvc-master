@@ -16,9 +16,9 @@ namespace TelerikMvcApp2.Controllers
 
         private readonly IContactRepository _contactRepository;
 
-        public ContactsController()
+        public ContactsController(IContactRepository _contactRepository)
         {
-            _contactRepository=new ContactRepository(new ContactContext());
+            this._contactRepository = _contactRepository;
         }
 
         // GET: Contacts

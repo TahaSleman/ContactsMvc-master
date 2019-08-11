@@ -7,7 +7,7 @@ using TelerikMvcApp2.Models;
 
 namespace TelerikMvcApp2.Repository.Interfaces
 {
-    interface IContactRepository
+   public interface IContactRepository
     {
         IEnumerable<Contact> GetContacts();
         Contact GetContactById(int contactId);

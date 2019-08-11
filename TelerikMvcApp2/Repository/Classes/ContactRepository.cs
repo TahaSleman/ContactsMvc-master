@@ -10,9 +10,9 @@ namespace TelerikMvcApp2.Repository.Classes
 {
     public class ContactRepository:IContactRepository
     {
-        private readonly ContactContext _context;
+        private readonly IContactContextRepository _context;
         
-        public ContactRepository(ContactContext _context)
+        public ContactRepository(IContactContextRepository _context)
         {
             this._context = _context;
         }
@@ -40,12 +40,12 @@ namespace TelerikMvcApp2.Repository.Classes
 
         public void UpdateContact(Contact contact)
         {
-            _context.Entry(contact).State = EntityState.Modified;
+            _context.Update(contact);
         }
 
         public void Save()
         {
-            _context.SaveChanges();
+            _context.Save();
         }
     }
 }
